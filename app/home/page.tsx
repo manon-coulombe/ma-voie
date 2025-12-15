@@ -5,7 +5,7 @@ import ChallengeCard from "@/app/components/challengeCard";
 export default function Home() {
     const challenges = challengesJson.challenges as unknown as Challenge[];
     return (
-      <div className='bg-neutral-100'>
+      <div>
         <header className='flex flex-col sticky top-0 justify-center items-center h-48 bg-purple-200 shadow-xl/20'>
             <h1 className='text-4xl font-bold mb-2'>Orientation</h1>
             <p>Clarifier et valider ton projet, identifier tes compétences, rechercher une formation ou une
