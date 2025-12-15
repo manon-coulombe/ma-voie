@@ -1,25 +1,26 @@
 import challengesJson from "../data/challenges.json";
 import {Challenge} from "@/app/types/challenge";
+import ChallengeCard from "@/app/components/challengeCard";
 
 export default function Home() {
     const challenges = challengesJson.challenges as unknown as Challenge[];
-  return (
-    <div>
-        <header className='flex  flex-col justify-center items-center h-48 bg-rose-200'>
-            <h1 className='text-2xl font-bold'>Orientation</h1>
+    return (
+      <div className='bg-neutral-100'>
+        <header className='flex flex-col sticky top-0 justify-center items-center h-48 bg-purple-200 shadow-xl/20'>
+            <h1 className='text-4xl font-bold mb-2'>Orientation</h1>
             <p>Clarifier et valider ton projet, identifier tes compétences, rechercher une formation ou une
                 alternance.</p>
         </header>
-        <main>
-        <ul>
-            {challenges.map((
-                c =>
-                    <li className='text-base' key={c.id}>
-                        {c.title}
-                    </li>
-                )
-            )}
-        </ul>
+        <main className=' m-8'>
+            <ul>
+                {challenges.map((
+                    c =>
+                        <li className='w-full text-base mb-6' key={c.id}>
+                            <ChallengeCard challenge={c} />
+                        </li>
+                    )
+                )}
+            </ul>
       </main>
     </div>
   );
