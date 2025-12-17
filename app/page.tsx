@@ -1,9 +1,17 @@
-import challengesJson from "./data/challenges.json";
-import {Challenge} from "@/app/types/challenge";
+'use client'
+
 import ChallengeCard from "@/app/components/challengeCard";
+import {getChallenges} from "@/app/lib/challenges";
+import {useEffect, useState} from "react";
+import {Challenge} from "@/app/types/challenge";
 
 export default function Home() {
-    const challenges = challengesJson.challenges as Challenge[];
+    const [challenges, setChallenges] = useState<Challenge[]>([]);
+
+    useEffect(() => {
+        getChallenges().then(setChallenges)
+    }, []);
+
     return (
       <div>
         <header className='flex flex-col sticky top-0 p-6 justify-center items-center h-48 bg-purple-200 shadow-xl/20'>

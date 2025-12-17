@@ -1,17 +1,22 @@
-import { use } from "react";
-import challengesJson from "../data/challenges.json";
+'use client'
+
+import {use, useEffect, useState} from "react";
 import {Challenge} from "@/app/types/challenge";
 import Duration from "@/app/components/duration";
 import BackButton from "@/app/components/backButton";
+import {getChallenges} from "@/app/lib/challenges";
 
 export default function ChallengePage({params}: {params: Promise<{slug: string}>}) {
     const { slug } = use(params);
+    const [challenge, setChallenge] = useState<Challenge>();
 
-    const challenge = (challengesJson.challenges as Challenge[]).find(
-        c => {
-            return c.id === slug;
-        }
-    )
+    useEffect(() => {
+        getChallenges().then((r) => setChallenge(r.find(
+            c => {
+                return c.id === slug;
+            })
+        ));
+    }, [slug]);
 
     if (!challenge) return <>Error</>
 
